@@ -21,6 +21,7 @@
         "src/Purpleplanet.js",
         "src/Redplanet.js",
         "src/Shootingstar.js",
-        "src/CollisionTest.js"
+        "src/CollisionTest.js",
+        "src/Fuel.js"
     ]
 }

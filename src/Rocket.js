@@ -4,18 +4,17 @@ var Rocket = cc.Sprite.extend({
         this._super();
         this.initWithFile( 'res/images/rocket.png' );
         this.direction = null;
-        this.velocity = ( screenWidth - 100 ) / 6;
+        //this.velocity = ( screenWidth - 100 ) / 6;
+        this.velocity = 50;
         this.acceleration = 2;
-        this.start = true;
     },
     
     update: function( dt ) {
         var position = this.getPosition();
-        console.log( 'Rocket: ' + position.x );
+        //console.log( 'Rocket: ' + position.x );
+  
+        this.checkThenMove();
         
-        if ( this.start == true ) {
-            this.checkThenMove();
-        }
 
     },
     
@@ -71,6 +70,17 @@ var Rocket = cc.Sprite.extend({
                 this.setPosition( new cc.Point( position.x, position.y ) );
             }
         }
+    },
+    
+    checkHit: function( rocket ) {
+        var rPosition = rocket.getPosition();
+        var oPosition = this.getPosition();
+        
+        return checkCollision( rPosition.x, rPosition.y, oPosition.x, oPosition.y );
+    },
+    
+    gameEnd: function() {
+        this.velocity = 0;
     }
 });
 

@@ -51,7 +51,7 @@
  }
  *
  */
-var screenWidth = 400;
+var screenWidth = 600;
 var screenHeight = 600;
 
 cc.game.onStart = function(){

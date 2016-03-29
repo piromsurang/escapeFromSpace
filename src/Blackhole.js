@@ -6,34 +6,37 @@ var Blackhole = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-
+        
+        this.checkPositionForReappear();
         this.moveDown();
+        
 
-
-        console.log( 'Blackhole: ' + this.getPositionX() );
+        
     },
     
-    checkPosition: function() {
-        var position = this.getPosition();
-        if ( position.x < 0 ) {
-            
-        }
-    },
-    
-    moveDown: function () {
+    moveDown: function() {
         var position = this.getPosition();
         
         this.setPosition( new cc.Point( position.x, position.y - this.velocity) );
-        this.velocity += Blackhole.ACCELERATION;
+        //this.velocity += Blackhole.ACCELERATION;
     },
     
-    hit: function( rocket ) {
-        var rPosition = rocket.getPosition();
-        var oPosition = this.getPosition();
-        
-        return checkCollision( rPosition.x, rPosition.y, oPosition.x, oPosition.y );
+    randomPositionX: function() {
+        var rand = Math.round( Math.random() * 4 + 0.5 ) * 100 ;
+        return rand;
+    },
+    
+    randomPositionY: function() {
+        return ( Math.random() + 6.5 ) * 100;
+    },
+    
+    checkPositionForReappear: function() {
+        var position = this.getPosition();
+        if ( position.y < -50 ) {
+            this.setPosition( new cc.Point( this.randomPositionX(), this.randomPositionY() ))
+        }
     }
 });
 
-Blackhole.STARTING_VELOCITY = 2;
+Blackhole.STARTING_VELOCITY = 2.3;
 Blackhole.ACCELERATION = 0.005;
