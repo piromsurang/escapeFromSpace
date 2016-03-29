@@ -13,6 +13,14 @@
 
     "jsList" : [
         "src/resource.js",
-        "src/GameLayer.js"
+        "src/GameLayer.js",
+        "src/Rocket.js",
+        "src/Blackhole.js",
+        "src/Blueplanet.js",
+        "src/Orangeplanet.js",
+        "src/Purpleplanet.js",
+        "src/Redplanet.js",
+        "src/Shootingstar.js",
+        "src/CollisionTest.js"
     ]
 }

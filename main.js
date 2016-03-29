@@ -51,7 +51,7 @@
  }
  *
  */
-var screenWidth = 800;
+var screenWidth = 400;
 var screenHeight = 600;
 
 cc.game.onStart = function(){
@@ -71,7 +71,7 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new StartScreen());
+        cc.director.runScene(new StartScene());
     }, this);
 };
 cc.game.run();
