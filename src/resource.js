@@ -6,7 +6,9 @@ var res = {
     purpleplanet_png: 'res/images/purpleplanet.png',
     redplanet_png: 'res/images/redplanet.png',
     shootingstar_png: 'res/images/shootingstar.png',
-    fuel_png: 'res/images/fuel.png'
+    fuel_png: 'res/images/fuel.png',
+    fuelbar_png: 'res/images/fuelbar.png',
+    borderfuelbar_png: 'res/images/borderfuelbar.png'
 };
 
 var g_resources = [];

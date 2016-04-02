@@ -22,6 +22,8 @@
         "src/Redplanet.js",
         "src/Shootingstar.js",
         "src/CollisionTest.js",
-        "src/Fuel.js"
+        "src/Fuel.js",
+        "src/Fuelbar.js",
+        "src/Borderfuelbar.js"
     ]
 }

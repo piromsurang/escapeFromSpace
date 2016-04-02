@@ -11,8 +11,7 @@ var Rocket = cc.Sprite.extend({
     
     update: function( dt ) {
         var position = this.getPosition();
-        //console.log( 'Rocket: ' + position.x );
-  
+
         this.checkThenMove();
         
 

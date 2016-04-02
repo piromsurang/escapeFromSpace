@@ -1,3 +1,4 @@
+var distance = 0;
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 7, 23, 34, 255 ) );
@@ -9,13 +10,28 @@ var GameLayer = cc.LayerColor.extend({
         this.rocket.scheduleUpdate();
         this.addKeyboardHandlers();
         
-
+        this.distanceLabel = cc.LabelTTF.create( 'Distance: 0 m', 'Arial', 20 );
+	    this.distanceLabel.setPosition( new cc.Point( 510, 570 ) );
+        this.addChild( this.distanceLabel, 2 );
+        
         this.fuel = new Fuel();
         this.fuel.setPosition( new cc.Point( this.fuel.randomPositionX(), 
                                             this.fuel.randomPositionY() ) );
         this.addChild( this.fuel );
         this.fuel.scheduleUpdate();
-
+        
+        this.scheduleUpdate();
+        
+        this.borderfuelbar = new Borderfuelbar();
+        this.borderfuelbar.setPosition( new cc.Point( 95, 575 ) );
+        this.addChild( this.borderfuelbar, 2 );
+        
+        this.fuelbar = new Fuelbar();
+        this.fuelbar.setPosition( new cc.Point( 105, 575 ) );
+        this.addChild( this.fuelbar, 1 );
+        
+        this.fuelbar.scheduleUpdate();
+        
         this.obstacles = this.generateObastacles();
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
@@ -23,7 +39,7 @@ var GameLayer = cc.LayerColor.extend({
             this.obstacles[i].scheduleUpdate();
         }
         
-
+        
         
         return true;
     },
@@ -37,13 +53,33 @@ var GameLayer = cc.LayerColor.extend({
                 checkGameover = true;
             }
         }
+        if ( this.fuelbar.getPositionX() <= -40 ) {
+            checkGameover = true;
+        }
+        if ( this.fuel.closeTo( this.rocket ) ) {
+            var fuelbarPosition = this.fuelbar.getPosition();
+            this.fuel.setPosition( new cc.Point( this.fuel.randomPositionX(), 
+                                         this.fuel.randomPositionY() ) );
+            
+            if ( fuelbarPosition.x + 15 > 95 ) {
+                this.fuelbar.setPosition( new cc.Point( 105, fuelbarPosition.y ) );
+            }
+            else {
+                this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 30 ), fuelbarPosition.y );
+            }
+   
+        }
+
         if ( !checkGameover ) {
             this.rocket.move( keyCode );
         }
         else {
             this.rocket.gameEnd();
-        }   
-
+            
+            for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
+                this.obstacles[i].gameEnd();
+            }
+        }
 
     },
     
@@ -80,6 +116,10 @@ var GameLayer = cc.LayerColor.extend({
                                redplanet, shootingstar ];
         return listOfObstacles;
         
+    },
+    
+    update: function( dt ) {
+        this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
     }
 });
  

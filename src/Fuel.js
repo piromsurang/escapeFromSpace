@@ -5,24 +5,44 @@ var Fuel = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-        console.log( 'Fuel ' + this.getPositionX() + '  ' + this.getPositionY() );
     },
     
     randomPositionX: function() {
         var position = Math.random() * ( screenWidth - 100 ) + 100;
+        
+        if ( position > 0 && position < 100 ) {
+            position = 50;
+        }
+        else if ( position>= 100 && position < 200 ) {
+            position = 150;
+        }
+        else if ( position >= 200 && position< 300 ) {
+            position = 250;
+        }
+        else if ( position >= 300 && position < 400 ) {
+            position = 350;
+        }
+        else if ( position >= 400 && position < 500 ) {
+            position = 450
+        }
+        else {
+            position = 550;
+        }
         return position;
     },
     
     randomPositionY: function() {
-        var position = Math.random() * ( screenHeight - 100 ) + 100;
+        var position = Math.random() * ( screenHeight - 200 ) + 100;
         return position;
     },
     
     closeTo: function( rocket ) {
         var rocketPosition = rocket.getPosition();
         var fuelPosition = this.getPosition();
-        if ( rocketPosition.x - fuelPosition.x >= -30 && rocketPosition.x <= 30 &&
-           rocketPosition.y - fuelPosition.y >= -30 && rocketPosition.y - fuelPosition.y <= 30 ) {
+        if ( rocketPosition.x - fuelPosition.x >= -Fuel.BORDER && 
+            rocketPosition.x - fuelPosition.x <= Fuel.BORDER &&
+           rocketPosition.y - fuelPosition.y >= -Fuel.BORDER &&
+            rocketPosition.y - fuelPosition.y <= Fuel.BORDER ) {
             
             return true;
         }
@@ -31,3 +51,5 @@ var Fuel = cc.Sprite.extend({
         }
     }
 });
+
+Fuel.BORDER = 37;
