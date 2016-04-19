@@ -41,6 +41,10 @@ var GameLayer = cc.LayerColor.extend({
         this.explosion.setPosition( new cc.Point( 700, 700 ) );
         this.addChild( this.explosion, 3 );
         
+        this.gameOverLabel = new GameOver();
+        this.gameOverLabel.setPosition( new cc.Point( 800, 800 ) );
+        this.addChild( this.gameOverLabel, 3 );
+        
         this.obstacles = this.generateObastacles();
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
@@ -108,6 +112,17 @@ var GameLayer = cc.LayerColor.extend({
         this.fuelbar.gameEnd();
         this.explosion.setPosition( new cc.Point( this.rocket.getPositionX(),
                                                  this.rocket.getPositionY() ) );
+        
+        var rocketPosition = this.rocket.getPosition();
+        
+        if ( rocketPosition.y > 300 ) {
+            this.gameOverLabel.setPosition( new cc.Point( 300, 200 ) );
+        }
+        else {
+            this.gameOverLabel.setPosition( new cc.Point( 300, 400 ) );
+        }
+        
+
         
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].gameEnd();
