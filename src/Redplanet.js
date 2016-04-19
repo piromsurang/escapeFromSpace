@@ -47,7 +47,7 @@ var Redplanet = cc.Sprite.extend({
     
     checkPositionForReappear: function() {
         var position = this.getPosition();
-        if ( position.y < -70 ) {
+        if ( position.y < -40 ) {
             this.setPosition( this.randomPositionX(), this.randomPositionY() );
         }
     },

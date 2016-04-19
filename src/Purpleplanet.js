@@ -14,7 +14,7 @@ var Purpleplanet = cc.Sprite.extend({
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-       // this.velocity += Purpleplanet.ACCELERATION;
+       //this.velocity += Purpleplanet.ACCELERATION;
     },
     
     randomPositionX: function() {
@@ -48,7 +48,7 @@ var Purpleplanet = cc.Sprite.extend({
     
     checkPositionForReappear: function() {
         var position = this.getPosition();
-        if ( position.y < -50 ) {
+        if ( position.y < -30 ) {
             this.setPosition( this.randomPositionX(), this.randomPositionY() );
         }
     },

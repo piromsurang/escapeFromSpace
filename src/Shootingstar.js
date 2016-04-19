@@ -13,7 +13,7 @@ var Shootingstar = cc.Sprite.extend({
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-        //this.velocity += Shootingstar.ACCELERATION;
+        this.velocity += Shootingstar.ACCELERATION;
     },
     
     randomPositionX: function() {

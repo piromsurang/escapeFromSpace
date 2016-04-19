@@ -24,6 +24,9 @@
         "src/CollisionTest.js",
         "src/Fuel.js",
         "src/Fuelbar.js",
-        "src/Borderfuelbar.js"
+        "src/Borderfuelbar.js",
+        "src/Explosion.js",
+        "src/Background.js",
+        "src/Startscreen.js"
     ]
 }

@@ -1,6 +1,9 @@
 var checkCollision = function( rocketX, rocketY, obstacleX, obstacleY ) {
-    if ( rocketY - obstacleY >= -80 && rocketY - obstacleY <= 80) {
-        if ( rocketX - obstacleX >= - 80 && rocketX - obstacleX <= 80 ) {
+    if ( rocketY - obstacleY >= -checkCollision.BORDERSIDE && 
+        rocketY - obstacleY <= checkCollision.BORDERSIDE ) {
+        
+        if ( rocketX - obstacleX >= -checkCollision.BORDERSIDE && 
+            rocketX - obstacleX <= checkCollision.BORDERSIDE ) {
             return true;
         }
         else {
@@ -11,3 +14,4 @@ var checkCollision = function( rocketX, rocketY, obstacleX, obstacleY ) {
         return false;
     }
 }
+checkCollision.BORDERSIDE = 67; 

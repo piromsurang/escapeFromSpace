@@ -52,4 +52,4 @@ var Fuel = cc.Sprite.extend({
     }
 });
 
-Fuel.BORDER = 37;
+Fuel.BORDER = 43;

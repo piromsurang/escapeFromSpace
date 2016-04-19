@@ -71,9 +71,9 @@ var Rocket = cc.Sprite.extend({
         }
     },
     
-    checkHit: function( rocket ) {
-        var rPosition = rocket.getPosition();
-        var oPosition = this.getPosition();
+    checkHit: function( obstacle ) {
+        var rPosition = this.getPosition();
+        var oPosition = obstacle.getPosition();
         
         return checkCollision( rPosition.x, rPosition.y, oPosition.x, oPosition.y );
     },

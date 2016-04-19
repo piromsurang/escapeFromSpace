@@ -13,7 +13,7 @@ var Orangeplanet = cc.Sprite.extend({
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-        //this.velocity += Orangeplanet.ACCELERATION;
+        this.velocity += Orangeplanet.ACCELERATION;
     },
     
     randomPositionX: function() {
@@ -47,7 +47,7 @@ var Orangeplanet = cc.Sprite.extend({
     
     checkPositionForReappear: function() {
         var position = this.getPosition();
-        if ( position.y < -70 ) {
+        if ( position.y < -50 ) {
             this.setPosition( this.randomPositionX(), this.randomPositionY() );
         }
     },

@@ -59,7 +59,7 @@ var Blackhole = cc.Sprite.extend({
     
     checkPositionForReappear: function() {
         var position = this.getPosition();
-        if ( position.y < -50 ) {
+        if ( position.y < -30 ) {
             this.setPosition( new cc.Point( this.randomPositionX(), this.randomPositionY() ))
         }
     },
