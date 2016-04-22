@@ -7,8 +7,10 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
         
         this.background = new Background();
-        this.background.setPosition( new cc.Point( 300, 300 ) );
+        this.background.setAnchorPoint( 0.5, 0 )
+        this.background.setPosition( new cc.Point( 300, 0 ) );
         this.addChild( this.background );
+        this.background.scheduleUpdate();
         
         this.rocket = new Rocket();
         this.rocket.setPosition( new cc.Point( 50, 50 ) );
@@ -114,7 +116,8 @@ var GameLayer = cc.LayerColor.extend({
         this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
         this.checkRocketHitObstacles();
         this.checkFuelCloseToRocket();
-         console.log( this.fuelbar.getPositionX() );
+        console.log( this.fuelbar.getPositionX() );
+        console.warn( this.checkFuelCloseToRocket() );
 
     },
     
@@ -136,6 +139,7 @@ var GameLayer = cc.LayerColor.extend({
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].gameEnd();
         }       
+        
     },
     
     checkFuelCloseToRocket: function() {
@@ -167,6 +171,7 @@ var GameLayer = cc.LayerColor.extend({
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[ i ].unscheduleUpdate();
             this.fuelbar.unscheduleUpdate();
+            this.background.unscheduleUpdate();
         }
     },
     
@@ -176,6 +181,7 @@ var GameLayer = cc.LayerColor.extend({
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[ i ].scheduleUpdate();
             this.fuelbar.scheduleUpdate();
+            this.background.scheduleUpdate();
         }
     },
     
@@ -183,7 +189,7 @@ var GameLayer = cc.LayerColor.extend({
         
         var fuelbarPosition = this.fuelbar.getPosition();
         
-        if ( fuelbarPosition.x + 15 > 90 ) {
+        if ( fuelbarPosition.x + 15 > 95 ) {
             this.fuelbar.setPosition( new cc.Point( 105, fuelbarPosition.y ) );
         }
         else {

@@ -14,7 +14,7 @@ var Fuelbar = cc.Sprite.extend({
     decreaseFuelbar: function() {
         var position = this.getPosition();
         if ( checkGameEndAndFuelbarStop == 0 ) {
-            this.setPosition( new cc.Point( position.x - 1, position.y ) );          
+            this.setPosition( new cc.Point( position.x - 0.06, position.y ) );          
         }
 
     },
