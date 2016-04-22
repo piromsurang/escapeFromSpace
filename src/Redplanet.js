@@ -1,3 +1,5 @@
+
+
 var Redplanet = cc.Sprite.extend({
     ctor: function() {
         this._super();
@@ -8,6 +10,7 @@ var Redplanet = cc.Sprite.extend({
     update: function( dt ) {
         this.checkPositionForReappear();
         this.moveDown();
+        
     },
     
     moveDown: function() {

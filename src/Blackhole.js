@@ -9,7 +9,7 @@ var Blackhole = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-        
+
         this.checkPositionForReappear();
         
         if ( checkEndForDistanceCounting == 0 ) {
@@ -19,7 +19,6 @@ var Blackhole = cc.Sprite.extend({
         this.moveDown();
         
 
-        
     },
     
     moveDown: function() {
@@ -68,7 +67,6 @@ var Blackhole = cc.Sprite.extend({
         this.velocity = 0;
         checkEndForDistanceCounting = 1;
     }
-    
 });
 
 Blackhole.STARTING_VELOCITY = 2.3;

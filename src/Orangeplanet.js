@@ -1,3 +1,5 @@
+
+
 var Orangeplanet = cc.Sprite.extend({
     ctor: function() {
         this._super();
@@ -8,6 +10,7 @@ var Orangeplanet = cc.Sprite.extend({
     update: function( dt ) {
         this.checkPositionForReappear()
         this.moveDown();
+        
     },
     
     moveDown: function() {

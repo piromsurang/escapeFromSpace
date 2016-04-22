@@ -8,11 +8,13 @@ var Fuelbar = cc.Sprite.extend({
     
     update: function( dt ) {
         this.decreaseFuelbar();
+        
     },
     
     decreaseFuelbar: function() {
+        var position = this.getPosition();
         if ( checkGameEndAndFuelbarStop == 0 ) {
-            this.setPosition( new cc.Point( this.getPositionX() - 0.05, this.getPositionY() ) );          
+            this.setPosition( new cc.Point( position.x - 1, position.y ) );          
         }
 
     },

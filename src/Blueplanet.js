@@ -1,3 +1,5 @@
+
+
 var Blueplanet = cc.Sprite.extend({
    ctor: function() {
        this._super();
@@ -6,8 +8,8 @@ var Blueplanet = cc.Sprite.extend({
    },
     
     update: function( dt ) {
-        this.checkPositionForReappear();
-        this.moveDown();
+            this.checkPositionForReappear();
+            this.moveDown();
 
     },
     

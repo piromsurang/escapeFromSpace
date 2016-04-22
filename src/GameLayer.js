@@ -1,5 +1,6 @@
 var distance = 0;
 var checkGameEnd = false;
+
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 7, 23, 34, 255 ) );
@@ -52,17 +53,26 @@ var GameLayer = cc.LayerColor.extend({
             this.obstacles[i].scheduleUpdate();
         }
         
-        
+        this.pause = false;
         
         return true;
     },
     
     onKeyDown: function( keyCode, event ) {
-
-        if ( checkGameEnd == false ) {
-            this.rocket.move( keyCode );
+        
+        if ( keyCode == 80 ) {
+            if ( this.pause == false ) {
+                this.onPause();
+            }
+            else {
+                this.offPause();
+            }
         }
-
+        if ( this.pause == false ) {
+            if ( checkGameEnd == false ) {
+                this.rocket.move( keyCode );
+            }
+        }
     },
     
     onKeyUp: function( keyCode, event ) {
@@ -104,6 +114,7 @@ var GameLayer = cc.LayerColor.extend({
         this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
         this.checkRocketHitObstacles();
         this.checkFuelCloseToRocket();
+         console.log( this.fuelbar.getPositionX() );
 
     },
     
@@ -122,8 +133,6 @@ var GameLayer = cc.LayerColor.extend({
             this.gameOverLabel.setPosition( new cc.Point( 300, 400 ) );
         }
         
-
-        
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].gameEnd();
         }       
@@ -134,15 +143,8 @@ var GameLayer = cc.LayerColor.extend({
             var fuelbarPosition = this.fuelbar.getPosition();
             this.fuel.setPosition( new cc.Point( this.fuel.randomPositionX(), 
                                          this.fuel.randomPositionY() ) );
-            
-            if ( fuelbarPosition.x + 15 > 95 ) {
-                this.fuelbar.setPosition( new cc.Point( 105, fuelbarPosition.y ) );
-            }
-            else {
-                this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 30 ), fuelbarPosition.y );
-            }
-   
-        }      
+            this.getFuel();
+          }      
     },
     
     checkRocketHitObstacles: function() {
@@ -153,10 +155,41 @@ var GameLayer = cc.LayerColor.extend({
             }
         }
         
-        if ( this.fuelbar.getPositionX() <= -40 ) {
+        if ( this.fuelbar.getPositionX() <= -50 ) {
             checkGameEnd = true;
             this.gameEnd();
         }
+    },
+    
+    onPause: function() {
+        this.pause = true;
+        
+        for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
+            this.obstacles[ i ].unscheduleUpdate();
+            this.fuelbar.unscheduleUpdate();
+        }
+    },
+    
+    offPause: function() {
+        this.pause = false;
+        
+        for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
+            this.obstacles[ i ].scheduleUpdate();
+            this.fuelbar.scheduleUpdate();
+        }
+    },
+    
+    getFuel: function() {
+        
+        var fuelbarPosition = this.fuelbar.getPosition();
+        
+        if ( fuelbarPosition.x + 15 > 90 ) {
+            this.fuelbar.setPosition( new cc.Point( 105, fuelbarPosition.y ) );
+        }
+        else {
+            this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 15), fuelbarPosition.y );               }
+            
+        
     }
 });
 
