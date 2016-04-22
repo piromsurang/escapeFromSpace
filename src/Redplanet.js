@@ -57,6 +57,11 @@ var Redplanet = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.velocity = Redplanet.VELOCITY;
+        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 

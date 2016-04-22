@@ -57,6 +57,11 @@ var Orangeplanet = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.velocity = Orangeplanet.VELOCITY;
+        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 

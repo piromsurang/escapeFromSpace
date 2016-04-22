@@ -13,7 +13,7 @@ var GameLayer = cc.LayerColor.extend({
         this.background.scheduleUpdate();
         
         this.rocket = new Rocket();
-        this.rocket.setPosition( new cc.Point( 50, 50 ) );
+        this.rocket.setPosition( new cc.Point( 300, 50 ) );
         this.addChild( this.rocket, 1 );
         this.rocket.scheduleUpdate();
         this.addKeyboardHandlers();
@@ -48,6 +48,10 @@ var GameLayer = cc.LayerColor.extend({
         this.gameOverLabel.setPosition( new cc.Point( 800, 800 ) );
         this.addChild( this.gameOverLabel, 3 );
         
+        this.restartInstructionLabel = cc.LabelTTF.create( 'PRESS R TO RESTART', 'Arial', 20 );
+        this.restartInstructionLabel.setPosition( new cc.Point( 800, 800 ) );
+        this.addChild( this.restartInstructionLabel, 3 );
+        
         this.obstacles = this.generateObastacles();
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
@@ -61,6 +65,10 @@ var GameLayer = cc.LayerColor.extend({
     },
     
     onKeyDown: function( keyCode, event ) {
+        
+        if ( keyCode == 82 ) {
+            this.restart();
+        }
         
         if ( keyCode == 80 ) {
             if ( this.pause == false ) {
@@ -128,13 +136,20 @@ var GameLayer = cc.LayerColor.extend({
                                                  this.rocket.getPositionY() ) );
         
         var rocketPosition = this.rocket.getPosition();
+        var gameOverSignPos = this.gameOverLabel.getPosition();
         
         if ( rocketPosition.y > 300 ) {
             this.gameOverLabel.setPosition( new cc.Point( 300, 200 ) );
+            this.restartInstructionLabel.setPosition( new cc.Point( gameOverSignPos.x,
+                                                                   gameOverSignPos.y + 250 ) );
         }
         else {
             this.gameOverLabel.setPosition( new cc.Point( 300, 400 ) );
+            this.restartInstructionLabel.setPosition( new cc.Point( gameOverSignPos.x,
+                                                                   gameOverSignPos.y - 250 ) );
         }
+        
+
         
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].gameEnd();
@@ -196,6 +211,35 @@ var GameLayer = cc.LayerColor.extend({
             this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 15), fuelbarPosition.y );               }
             
         
+    },
+    
+    restart: function() {
+        distance = 0;
+        checkGameEnd = false;
+
+        this.background.setPosition( new cc.Point( 300, 0 ) );
+        
+        this.fuel.setPosition( new cc.Point( this.fuel.randomPositionX(), 
+                                            this.fuel.randomPositionY() ) );
+    
+        this.fuelbar.setPosition( new cc.Point( 105, 575 ) );
+        this.fuelbar.restart();
+        
+        this.rocket.setPosition( new cc.Point( 300, 50 ) );
+        this.rocket.restart();
+        
+        this.explosion.setPosition( new cc.Point( 700, 700 ) );
+        
+        this.gameOverLabel.setPosition( new cc.Point( 800, 800 ) );
+        
+        this.restartInstructionLabel.setPosition( new cc.Point( 800, 800 ) );
+        
+        for( var i = 0 ; i < this.obstacles.length ; i++ ) {
+            this.obstacles[ i ].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
+            this.obstacles[ i ].restart();
+            
+        }
+
     }
 });
 

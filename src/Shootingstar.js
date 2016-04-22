@@ -36,6 +36,11 @@ var Shootingstar = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.velocity = Shootingstar.VELOCITY;
+        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 

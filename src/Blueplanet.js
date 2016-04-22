@@ -1,5 +1,4 @@
 
-
 var Blueplanet = cc.Sprite.extend({
    ctor: function() {
        this._super();
@@ -57,6 +56,11 @@ var Blueplanet = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.velocity = Blueplanet.VELOCITY;
+        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 

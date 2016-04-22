@@ -21,5 +21,9 @@ var Fuelbar = cc.Sprite.extend({
     
     gameEnd: function() {
         checkGameEndAndFuelbarStop = 1;
+    },
+    
+    restart: function() {
+        checkGameEndAndFuelbarStop = 0;
     }
 });

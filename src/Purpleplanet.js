@@ -57,6 +57,11 @@ var Purpleplanet = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.velocity = Purpleplanet.VELOCITY;
+        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 

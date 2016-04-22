@@ -4,7 +4,6 @@ var Rocket = cc.Sprite.extend({
         this._super();
         this.initWithFile( 'res/images/rocket.png' );
         this.direction = null;
-        //this.velocity = ( screenWidth - 100 ) / 6;
         this.velocity = 50;
         this.acceleration = 2;
     },
@@ -80,6 +79,11 @@ var Rocket = cc.Sprite.extend({
     
     gameEnd: function() {
         this.velocity = 0;
+    },
+    
+    restart: function() {
+        this.setPosition( new cc.Point( 300, 0 ) );
+        this.velocity = 50;
     }
 });
 

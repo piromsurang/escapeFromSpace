@@ -66,6 +66,13 @@ var Blackhole = cc.Sprite.extend({
     gameEnd: function() {
         this.velocity = 0;
         checkEndForDistanceCounting = 1;
+    },
+    
+    restart: function() {
+        checkEndForDistanceCounting = 0;
+        this.velocity = Blackhole.STARTING_VELOCITY;
+        distance = 0;
+        this.setPosition( new cc.Point( this.randomPositionX(), this.randomPositionY() ))
     }
 });
 
