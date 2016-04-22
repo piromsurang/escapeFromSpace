@@ -7,7 +7,10 @@ var Fuelbar = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-        this.decreaseFuelbar();
+        if ( gameStart == true ) {
+           this.decreaseFuelbar();         
+        }
+
         
     },
     

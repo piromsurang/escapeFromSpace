@@ -7,9 +7,10 @@ var Blueplanet = cc.Sprite.extend({
    },
     
     update: function( dt ) {
+        if ( gameStart == true ) {
             this.checkPositionForReappear();
             this.moveDown();
-
+        }
     },
     
     moveDown: function() {

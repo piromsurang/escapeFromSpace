@@ -5,7 +5,10 @@ var Background = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-        this.checkPositionForReappear();
+        if ( gameStart == true ) {
+           this.checkPositionForReappear();         
+        }
+
     },
     
     moveDown: function() {

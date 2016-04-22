@@ -1,10 +1,15 @@
 var distance = 0;
 var checkGameEnd = false;
+var gameStart = false;
 
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 7, 23, 34, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
+        
+        this.startBackground = new StartBackground();
+        this.startBackground.setPosition( new cc.Point( 300, 300 ) );
+        this.addChild( this.startBackground, 4 );
         
         this.background = new Background();
         this.background.setAnchorPoint( 0.5, 0 )
@@ -52,6 +57,10 @@ var GameLayer = cc.LayerColor.extend({
         this.restartInstructionLabel.setPosition( new cc.Point( 800, 800 ) );
         this.addChild( this.restartInstructionLabel, 3 );
         
+        this.startInstructionLabel = cc.LabelTTF.create( 'PRESS ENTER TO START', 'Arial', 30 );
+        this.startInstructionLabel.setPosition( new cc.Point( 290, 170 ) );
+        this.addChild( this.startInstructionLabel, 4 );
+        
         this.obstacles = this.generateObastacles();
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
@@ -66,23 +75,30 @@ var GameLayer = cc.LayerColor.extend({
     
     onKeyDown: function( keyCode, event ) {
         
-        if ( keyCode == 82 ) {
-            this.restart();
+        if ( keyCode == 13 ) {
+            this.start();
         }
         
-        if ( keyCode == 80 ) {
+        if ( gameStart == true ) {
+            if ( keyCode == 82 ) {
+                this.restart();
+            }
+        
+            if ( keyCode == 80 ) {
+                if ( this.pause == false ) {
+                    this.onPause();
+                }
+                else {
+                    this.offPause();
+                }
+            }
             if ( this.pause == false ) {
-                this.onPause();
-            }
-            else {
-                this.offPause();
-            }
+                if ( checkGameEnd == false ) {
+                    this.rocket.move( keyCode );
+                }
+            }           
         }
-        if ( this.pause == false ) {
-            if ( checkGameEnd == false ) {
-                this.rocket.move( keyCode );
-            }
-        }
+
     },
     
     onKeyUp: function( keyCode, event ) {
@@ -121,11 +137,15 @@ var GameLayer = cc.LayerColor.extend({
     },
     
     update: function( dt ) {
-        this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
-        this.checkRocketHitObstacles();
-        this.checkFuelCloseToRocket();
-        console.log( this.fuelbar.getPositionX() );
-        console.warn( this.checkFuelCloseToRocket() );
+        
+        if ( gameStart == true ) {
+            this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
+            this.checkRocketHitObstacles();
+            this.checkFuelCloseToRocket();
+            console.log( this.fuelbar.getPositionX() );
+            console.warn( this.checkFuelCloseToRocket() );        
+        }
+
 
     },
     
@@ -235,11 +255,18 @@ var GameLayer = cc.LayerColor.extend({
         this.restartInstructionLabel.setPosition( new cc.Point( 800, 800 ) );
         
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
-            this.obstacles[ i ].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                             this.obstacles[i].randomPositionY() + i * 170 ) );
+            this.obstacles[ i ].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                    this.obstacles[i].randomPositionY() + i * 170 ));
             this.obstacles[ i ].restart();
             
         }
 
+    },
+    
+    start: function() {
+        gameStart = true;
+        this.startBackground.setPosition( new cc.Point( 1000, 1000 ) );
+        this.startInstructionLabel.setPosition( new cc.Point( 1000, 1000 ) );
+        
     }
 });
 

@@ -8,8 +8,12 @@ var Orangeplanet = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-        this.checkPositionForReappear()
-        this.moveDown();
+        
+        if ( gameStart == true ) {
+            this.checkPositionForReappear()
+            this.moveDown();    
+        }
+
         
     },
     

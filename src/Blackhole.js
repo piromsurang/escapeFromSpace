@@ -9,14 +9,17 @@ var Blackhole = cc.Sprite.extend({
     },
     
     update: function( dt ) {
-
-        this.checkPositionForReappear();
         
-        if ( checkEndForDistanceCounting == 0 ) {
-            distance += 1;     
+        if ( gameStart == true ) {
+            this.checkPositionForReappear();
+        
+            if ( checkEndForDistanceCounting == 0 ) {
+                distance += 1;     
+            }
+        
+            this.moveDown();
         }
-        
-        this.moveDown();
+
         
 
     },
