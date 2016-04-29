@@ -11,7 +11,6 @@ var res = {
     borderfuelbar_png: 'res/images/borderfuelbar.png',
     explosion_png: 'res/images/explosion.png',
     background_png: 'res/images/background.png',
-    startbutton_png: 'res/images/startbutton.png',
     startbackground_png: 'res/images/startBackground.png'
 };
 

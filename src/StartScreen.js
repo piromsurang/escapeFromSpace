@@ -1,9 +1,3 @@
-var Startbutton = cc.Sprite.extend({
-    ctor: function() {
-        this._super();
-        this.initWithFile( 'res/images/startbutton.png' );
-    }
-});
 
 var StartBackground = cc.Sprite.extend({
    ctor: function() {

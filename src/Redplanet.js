@@ -20,7 +20,7 @@ var Redplanet = cc.Sprite.extend({
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-        //this.velocity += Redplanet.ACCELERATION;
+        this.velocity += Redplanet.ACCELERATION;
     },
     
     randomPositionX: function() {
@@ -65,9 +65,8 @@ var Redplanet = cc.Sprite.extend({
     
     restart: function() {
         this.velocity = Redplanet.VELOCITY;
-        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 
 Redplanet.VELOCITY = 2.5;
-Redplanet.ACCELERATION = 0.005;
+Redplanet.ACCELERATION = 0.0003;

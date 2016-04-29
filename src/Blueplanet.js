@@ -16,7 +16,7 @@ var Blueplanet = cc.Sprite.extend({
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-        //this.velocity += Blueplanet.ACCELERATION;
+        this.velocity += Blueplanet.ACCELERATION;
     },
     
     randomPositionX: function() {
@@ -61,9 +61,8 @@ var Blueplanet = cc.Sprite.extend({
     
     restart: function() {
         this.velocity = Blueplanet.VELOCITY;
-        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 
 Blueplanet.VELOCITY = 2;
-Blueplanet.ACCELERATION = 0.005;
+Blueplanet.ACCELERATION = 0.0005;

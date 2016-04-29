@@ -14,4 +14,4 @@ var checkCollision = function( rocketX, rocketY, obstacleX, obstacleY ) {
         return false;
     }
 }
-checkCollision.BORDERSIDE = 67; 
+checkCollision.BORDERSIDE = 60; 

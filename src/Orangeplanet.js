@@ -65,9 +65,8 @@ var Orangeplanet = cc.Sprite.extend({
     
     restart: function() {
         this.velocity = Orangeplanet.VELOCITY;
-        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 
-Orangeplanet.VELOCITY = 2;
-Orangeplanet.ACCELERATION = 0.006;
+Orangeplanet.VELOCITY = 2.1;
+Orangeplanet.ACCELERATION = 0.0008;

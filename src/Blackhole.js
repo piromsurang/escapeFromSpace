@@ -28,7 +28,7 @@ var Blackhole = cc.Sprite.extend({
         var position = this.getPosition();
         
         this.setPosition( new cc.Point( position.x, position.y - this.velocity) );
-        //this.velocity += Blackhole.ACCELERATION;
+        this.velocity += Blackhole.ACCELERATION;
     },
     
     randomPositionX: function() {
@@ -75,9 +75,8 @@ var Blackhole = cc.Sprite.extend({
         checkEndForDistanceCounting = 0;
         this.velocity = Blackhole.STARTING_VELOCITY;
         distance = 0;
-        this.setPosition( new cc.Point( this.randomPositionX(), this.randomPositionY() ))
     }
 });
 
 Blackhole.STARTING_VELOCITY = 2.3;
-Blackhole.ACCELERATION = 0.005;
+Blackhole.ACCELERATION = 0.0005;

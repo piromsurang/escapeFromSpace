@@ -80,6 +80,7 @@ var GameLayer = cc.LayerColor.extend({
         }
         
         if ( gameStart == true ) {
+            
             if ( keyCode == 82 ) {
                 this.restart();
             }
@@ -92,7 +93,9 @@ var GameLayer = cc.LayerColor.extend({
                     this.offPause();
                 }
             }
+            
             if ( this.pause == false ) {
+                
                 if ( checkGameEnd == false ) {
                     this.rocket.move( keyCode );
                 }
@@ -106,14 +109,18 @@ var GameLayer = cc.LayerColor.extend({
     
     addKeyboardHandlers: function() {
         var self = this;
+        
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
+            
             onKeyPressed : function( keyCode, event ) {
                 self.onKeyDown( keyCode, event );
             },
+            
             onKeyReleased: function( keyCode, event ) {
                 self.onKeyUp( keyCode, event );
             }
+            
         }, this);
     },
     
@@ -141,53 +148,62 @@ var GameLayer = cc.LayerColor.extend({
         if ( gameStart == true ) {
             this.distanceLabel.setString( 'Distance: ' + distance + ' m' );
             this.checkRocketHitObstacles();
-            this.checkFuelCloseToRocket();
-            console.log( this.fuelbar.getPositionX() );
-            console.warn( this.checkFuelCloseToRocket() );        
+            this.checkFuelCloseToRocket();     
         }
 
 
     },
     
     gameEnd: function() {
+        
         this.rocket.gameEnd();
+        
         this.fuelbar.gameEnd();
+        
         this.explosion.setPosition( new cc.Point( this.rocket.getPositionX(),
                                                  this.rocket.getPositionY() ) );
         
         var rocketPosition = this.rocket.getPosition();
+       
         var gameOverSignPos = this.gameOverLabel.getPosition();
         
         if ( rocketPosition.y > 300 ) {
+            
             this.gameOverLabel.setPosition( new cc.Point( 300, 200 ) );
             this.restartInstructionLabel.setPosition( new cc.Point( gameOverSignPos.x,
                                                                    gameOverSignPos.y + 250 ) );
         }
+        
         else {
+            
             this.gameOverLabel.setPosition( new cc.Point( 300, 400 ) );
             this.restartInstructionLabel.setPosition( new cc.Point( gameOverSignPos.x,
                                                                    gameOverSignPos.y - 250 ) );
         }
         
-
-        
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
+            
             this.obstacles[i].gameEnd();
+            
         }       
         
     },
     
     checkFuelCloseToRocket: function() {
-          if ( this.fuel.closeTo( this.rocket ) ) {
+          
+        if ( this.fuel.closeTo( this.rocket ) ) {
+            
             var fuelbarPosition = this.fuelbar.getPosition();
             this.fuel.setPosition( new cc.Point( this.fuel.randomPositionX(), 
                                          this.fuel.randomPositionY() ) );
             this.getFuel();
+            
           }      
     },
     
     checkRocketHitObstacles: function() {
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
+            
             if ( this.rocket.checkHit( this.obstacles[i] ) ) {
                 checkGameEnd = true;
                 this.gameEnd();
@@ -227,8 +243,9 @@ var GameLayer = cc.LayerColor.extend({
         if ( fuelbarPosition.x + 15 > 95 ) {
             this.fuelbar.setPosition( new cc.Point( 105, fuelbarPosition.y ) );
         }
+        
         else {
-            this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 15), fuelbarPosition.y );               }
+            this.fuelbar.setPosition( new cc.Point( fuelbarPosition.x + 15, fuelbarPosition.y ) );               }
             
         
     },
@@ -256,6 +273,7 @@ var GameLayer = cc.LayerColor.extend({
         
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[ i ].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                    this.obstacles[i].randomPositionY() + i * 170 ));
+            console.log( i + ' object position = ' + this.obstacles[i].getPositionY() );
             this.obstacles[ i ].restart();
             
         }

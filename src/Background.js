@@ -13,7 +13,7 @@ var Background = cc.Sprite.extend({
     
     moveDown: function() {
         var position = this.getPosition();
-        this.setPosition( new cc.Point( position.x, position.y - 2.5 ) );
+        this.setPosition( new cc.Point( position.x, position.y - 2 ) );
     },
     
     checkPositionForReappear: function() {

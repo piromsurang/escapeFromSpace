@@ -18,7 +18,7 @@ var Purpleplanet = cc.Sprite.extend({
         if ( gameStart == true ) {
             var position = this.getPosition();
             this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
-            //this.velocity += Purpleplanet.ACCELERATION;
+            this.velocity += Purpleplanet.ACCELERATION;
         }
 
     },
@@ -65,9 +65,8 @@ var Purpleplanet = cc.Sprite.extend({
     
     restart: function() {
         this.velocity = Purpleplanet.VELOCITY;
-        this.setPosition( this.randomPositionX(), this.randomPositionY() );
     }
 });
 
-Purpleplanet.VELOCITY = 2;
-Purpleplanet.ACCELERATION = 0.005;
+Purpleplanet.VELOCITY = 1.9;
+Purpleplanet.ACCELERATION = 0.0005;
