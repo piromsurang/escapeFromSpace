@@ -2,7 +2,7 @@
 var StartBackground = cc.Sprite.extend({
    ctor: function() {
        this._super();
-       this.initWithFile( 'res/images/startBackground.png' );
+       this.initWithFile( 'res/images/startBackground-two.png' );
        this.setPosition( new cc.Point( 300, 300 ) );
    } 
 });

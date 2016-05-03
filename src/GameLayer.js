@@ -1,6 +1,7 @@
 var distance = 0;
 var checkGameEnd = false;
 var gameStart = false;
+var highScore = 0;
 
 var GameLayer = cc.LayerColor.extend({
     init: function() {
@@ -22,6 +23,10 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.rocket, 1 );
         this.rocket.scheduleUpdate();
         this.addKeyboardHandlers();
+        
+        this.highscoreLabel = cc.LabelTTF.create( 'High Score: 0 m', 'Arial', 20 );
+        this.highscoreLabel.setPosition( new cc.Point( 510, 550 ) );
+        this.addChild( this.highscoreLabel, 3 );
         
         this.distanceLabel = cc.LabelTTF.create( 'Distance: 0 m', 'Arial', 20 );
 	    this.distanceLabel.setPosition( new cc.Point( 510, 570 ) );
@@ -58,7 +63,7 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.restartInstructionLabel, 3 );
         
         this.startInstructionLabel = cc.LabelTTF.create( 'PRESS ENTER TO START', 'Arial', 30 );
-        this.startInstructionLabel.setPosition( new cc.Point( 290, 170 ) );
+        this.startInstructionLabel.setPosition( new cc.Point( 290, 270 ) );
         this.addChild( this.startInstructionLabel, 4 );
         
         this.obstacles = this.generateObastacles();
@@ -167,6 +172,8 @@ var GameLayer = cc.LayerColor.extend({
        
         var gameOverSignPos = this.gameOverLabel.getPosition();
         
+        this.keepTrackOnHighScore();
+        
         if ( rocketPosition.y > 300 ) {
             
             this.gameOverLabel.setPosition( new cc.Point( 300, 200 ) );
@@ -273,7 +280,6 @@ var GameLayer = cc.LayerColor.extend({
         
         for( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[ i ].setPosition( new cc.Point( this.obstacles[i].randomPositionX(),                                                    this.obstacles[i].randomPositionY() + i * 170 ));
-            console.log( i + ' object position = ' + this.obstacles[i].getPositionY() );
             this.obstacles[ i ].restart();
             
         }
@@ -285,6 +291,14 @@ var GameLayer = cc.LayerColor.extend({
         this.startBackground.setPosition( new cc.Point( 1000, 1000 ) );
         this.startInstructionLabel.setPosition( new cc.Point( 1000, 1000 ) );
         
+    },
+    
+    keepTrackOnHighScore: function() {
+        if ( distance > highScore ) {
+            highScore = distance;
+        }
+        
+        this.highscoreLabel.setString( 'High Score: ' + highScore + ' m' );
     }
 });
 
