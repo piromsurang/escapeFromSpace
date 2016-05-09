@@ -7,33 +7,25 @@ var Blackhole = cc.Sprite.extend({
         this.initWithFile( 'res/images/blackhole.png' );
         this.velocity = Blackhole.STARTING_VELOCITY;
     },
-    
+
     update: function( dt ) {
-        
         if ( gameStart == true ) {
             this.checkPositionForReappear();
-        
             if ( checkEndForDistanceCounting == 0 ) {
-                distance += 1;     
+                distance += 1;
             }
-        
             this.moveDown();
         }
-
-        
-
     },
-    
+
     moveDown: function() {
         var position = this.getPosition();
-        
         this.setPosition( new cc.Point( position.x, position.y - this.velocity) );
         this.velocity += Blackhole.ACCELERATION;
     },
-    
+
     randomPositionX: function() {
-        var rand = Math.round( Math.random() * 5 + 0.5 ) * 100 ;
-        
+        var rand = Math.round( Math.random() * 5 + 0.5 ) * 100 ;  
         if ( rand > 0 && rand < 100 ) {
             rand = 50;
         }
@@ -54,23 +46,23 @@ var Blackhole = cc.Sprite.extend({
         }
         return rand;
     },
-    
+
     randomPositionY: function() {
         return ( Math.random() + 6.5 ) * 100;
     },
-    
+
     checkPositionForReappear: function() {
         var position = this.getPosition();
         if ( position.y < -30 ) {
             this.setPosition( new cc.Point( this.randomPositionX(), this.randomPositionY() ))
         }
     },
-    
+
     gameEnd: function() {
         this.velocity = 0;
         checkEndForDistanceCounting = 1;
     },
-    
+
     restart: function() {
         checkEndForDistanceCounting = 0;
         this.velocity = Blackhole.STARTING_VELOCITY;

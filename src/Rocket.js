@@ -7,18 +7,15 @@ var Rocket = cc.Sprite.extend({
         this.velocity = 50;
         this.acceleration = 2;
     },
-    
+
     update: function( dt ) {
-        
         var position = this.getPosition();
         this.checkThenMove();
-        
-
     },
-    
+
     move: function( key ) {
         var position = this.getPosition();
-        
+
         if ( key == cc.KEY.w ) {
             this.setPosition( new cc.Point( position.x, position.y + this.velocity ) );
         }
@@ -30,10 +27,10 @@ var Rocket = cc.Sprite.extend({
         }
         else if ( key == cc.KEY.d ) {
             this.setPosition( new cc.Point( position.x + this.velocity, position.y ) );
-        } 
+        }
     },
-    
-    checkThenMove: function() {  
+
+    checkThenMove: function() {
         var position = this.getPosition();
         if ( position.x < 50 ) {
             if ( position.y < 50 ) {
@@ -69,21 +66,18 @@ var Rocket = cc.Sprite.extend({
             }
         }
     },
-    
+
     checkHit: function( obstacle ) {
         var rPosition = this.getPosition();
         var oPosition = obstacle.getPosition();
-        
         return checkCollision( rPosition.x, rPosition.y, oPosition.x, oPosition.y );
     },
-    
+
     gameEnd: function() {
         this.velocity = 0;
     },
-    
+
     restart: function() {
-        this.setPosition( new cc.Point( 300, 0 ) );
         this.velocity = 50;
     }
 });
-

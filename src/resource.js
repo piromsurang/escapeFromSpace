@@ -11,7 +11,10 @@ var res = {
     borderfuelbar_png: 'res/images/borderfuelbar.png',
     explosion_png: 'res/images/explosion.png',
     background_png: 'res/images/background.png',
-    startbackground_png: 'res/images/startBackground-two.png'
+    startbackground_png: 'res/images/startBackground-two.png',
+    backgrounSound_mp3: 'res/sounds/myInspiration.mp3',
+    collect_item_mp3: 'res/sounds/collect_item.m4a',
+    explosion_mp3: 'res/sounds/explosionEdited.mp3'
 };
 
 var g_resources = [];

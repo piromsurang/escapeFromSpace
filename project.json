@@ -4,7 +4,7 @@
     "debugMode" : 1,
     "showFPS" : true,
     "frameRate" : 60,
-    "noCache" : false,
+    "noCache" : true,
     "id" : "gameCanvas",
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
@@ -24,7 +24,6 @@
         "src/CollisionTest.js",
         "src/Fuel.js",
         "src/Fuelbar.js",
-        "src/Explosion.js",
         "src/Background.js",
         "src/Startscreen.js"
     ]

@@ -5,24 +5,23 @@ var Blueplanet = cc.Sprite.extend({
        this.initWithFile( 'res/images/blueplanet.png' );
        this.velocity = Blueplanet.VELOCITY;
    },
-    
+
     update: function( dt ) {
         if ( gameStart == true ) {
             this.checkPositionForReappear();
             this.moveDown();
         }
     },
-    
+
     moveDown: function() {
         var position = this.getPosition();
         this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
         this.velocity += Blueplanet.ACCELERATION;
     },
-    
+
     randomPositionX: function() {
-        
         var rand = Math.round( ( ( Math.random() * 5 ) + 0.5 ) * 100 );
-        
+
         if ( rand > 0 && rand < 100 ) {
             rand = 50;
         }
@@ -43,22 +42,22 @@ var Blueplanet = cc.Sprite.extend({
         }
         return rand;
     },
-    
+
     randomPositionY: function() {
         return ( Math.random() + 6.5 ) * 100;
     },
-    
+
     checkPositionForReappear: function() {
         var position = this.getPosition();
         if ( position.y < -40 ) {
             this.setPosition( this.randomPositionX(), this.randomPositionY() );
         }
     },
-    
+
     gameEnd: function() {
         this.velocity = 0;
     },
-    
+
     restart: function() {
         this.velocity = Blueplanet.VELOCITY;
     }

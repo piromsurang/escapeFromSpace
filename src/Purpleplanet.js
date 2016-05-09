@@ -6,27 +6,22 @@ var Purpleplanet = cc.Sprite.extend({
         this.initWithFile( 'res/images/purpleplanet.png' );
         this.velocity = Purpleplanet.VELOCITY;
     },
-    
+
     update: function( dt ) {
         this.checkPositionForReappear();
         this.moveDown();
-        
     },
-    
+
     moveDown: function() {
-        
         if ( gameStart == true ) {
             var position = this.getPosition();
             this.setPosition( new cc.Point( position.x, position.y - this.velocity ) );
             this.velocity += Purpleplanet.ACCELERATION;
         }
-
     },
-    
+
     randomPositionX: function() {
-        
         var rand = Math.round( ( ( Math.random() * 5 ) + 0.5 ) * 100 );
-        
         if ( rand > 0 && rand < 100 ) {
             rand = 50;
         }
@@ -47,22 +42,22 @@ var Purpleplanet = cc.Sprite.extend({
         }
         return rand;
     },
-    
+
     randomPositionY: function() {
         return ( Math.random() + 6.5 ) * 100;
     },
-    
+
     checkPositionForReappear: function() {
         var position = this.getPosition();
         if ( position.y < -30 ) {
             this.setPosition( this.randomPositionX(), this.randomPositionY() );
         }
     },
-    
+
     gameEnd: function() {
         this.velocity = 0;
     },
-    
+
     restart: function() {
         this.velocity = Purpleplanet.VELOCITY;
     }

@@ -5,13 +5,9 @@ var Fuel = cc.Sprite.extend({
         this._super();
         this.initWithFile( 'res/images/fuel.png' );
     },
-    
-    update: function( dt ) {
-    },
-    
+
     randomPositionX: function() {
         var position = Math.random() * ( screenWidth - 100 ) + 100;
-        
         if ( position > 0 && position < 100 ) {
             position = 50;
         }
@@ -32,20 +28,20 @@ var Fuel = cc.Sprite.extend({
         }
         return position;
     },
-    
+
     randomPositionY: function() {
         var position = Math.random() * ( screenHeight - 200 ) + 100;
         return position;
     },
-    
+
     closeTo: function( rocket ) {
         var rocketPosition = rocket.getPosition();
         var fuelPosition = this.getPosition();
-        if ( rocketPosition.x - fuelPosition.x >= -Fuel.BORDER && 
+        if ( rocketPosition.x - fuelPosition.x >= -Fuel.BORDER &&
             rocketPosition.x - fuelPosition.x <= Fuel.BORDER &&
            rocketPosition.y - fuelPosition.y >= -Fuel.BORDER &&
             rocketPosition.y - fuelPosition.y <= Fuel.BORDER ) {
-            
+
             return true;
         }
         else {
