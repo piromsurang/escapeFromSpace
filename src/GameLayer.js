@@ -178,6 +178,7 @@ var GameLayer = cc.LayerColor.extend({
         for ( var i = 0 ; i < this.obstacles.length ; i++ ) {
             this.obstacles[i].gameEnd();
         }
+        cc.audioEngine.stopMusic();
     },
 
     checkFuelCloseToRocket: function() {
@@ -241,6 +242,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     restart: function() {
+        this.playBackgroundMusic();
         explosionEffect = 0;
         distance = 0;
         checkGameEnd = false;
